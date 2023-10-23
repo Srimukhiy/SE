@@ -1,4 +1,4 @@
-# SE
+# AI Vision Verse
 
 ## Step 1: Install streamlit using pip 
             pip install streamlit 
