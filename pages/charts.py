@@ -5,6 +5,7 @@ import time;
 from SpechToText import input;
 from TextTospeech import text_to_speech;
 from Piechart import render_pie_chart;
+from Linechart import render_line_chart;
 from pages.connect_to_db import connect;
 st.set_page_config(initial_sidebar_state="collapsed");
 #to display the charts for the file uploaded.
@@ -81,8 +82,15 @@ def charts_plotting():
             message = st.chat_message("assistant");
             message.write(desc);
 
-        elif graph =="Line":
-            st.header("Line chart is selected ")
+        elif graph =="LineGraph":
+            yaxis = st.selectbox("select a column on which u want to apply the line graph ",("math score","reading score","writing score"));
+            
+            fig,desc = render_line_chart(df,yaxis);
+            st.pyplot(fig);
+            text_to_speech(desc);
+            wait();
+            message = st.chat_message("assistant");
+            message.write(desc);
     
     elif "but_get_started" in st.session_state and st.session_state['but_get_started']==True:
         switch_page("fileupload");

@@ -6,8 +6,18 @@ import hashlib
 import time;
 from switch_page import switch_page;
 from pages.connect_to_db import connect;
+import re;
 st.set_page_config(initial_sidebar_state="collapsed");  
-
+def validate_password(password):  
+    if len(password) < 8:  
+        return "Minimum length of 8 characters" 
+    if not re.search("[a-z]", password):  
+        return "one letter between[a-z]"  
+    if not re.search("[A-Z]", password):  
+        return "minimum one capital letter"
+    if not re.search("[0-9]", password):  
+        return "a number is must to be in password"
+    return "True"
 
 def create_usertable(c):
 	c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT)')
@@ -58,7 +68,13 @@ def main():
 		st.subheader("Create New Account")
 		new_user = st.text_input("Username")
 		new_password = st.text_input("Password",type='password')
-		if st.button("Signup"):
+		#add the password validation to check whether constraints were ssatisfied.
+		val = validate_password(new_password) 
+		if val and val!="True":
+			st.error(val);
+		elif val and val=="True":
+			st.success(" password is valid !!");
+		if st.button("Signup") and val and val=="True":
 			create_usertable(c)
 			add_userdata(new_user,make_hashes(new_password),c,conn)
 			st.success("You have successfully created a valid Account")

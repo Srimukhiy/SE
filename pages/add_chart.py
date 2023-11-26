@@ -11,9 +11,15 @@ st.subheader("Additon of charts ");
 
 c,conn = connect.connection();
 chartname = st.text_input("name_of_the_chart");
+if chartname==None or len(chartname)==0:
+	st.error("chartname is mandatory")
 desc = st.text_input("description about the chart");
-visibility  = st.radio("select user visibility for this graph",["True", "False"]);
-if st.button("add"):
+if desc==None or len(desc)==0:
+	st.error("chart description is mandatory");
+visibility  = st.radio("select user visibility for this graph",["True", "False"],index=None);
+if visibility==None:
+	 st.error("please select true/false");
+if st.button("add") and chartname and desc and visibility:
 	create_charttable(c);
 	add_chartdata(chartname,desc,visibility,c,conn)
 	st.success("chart added succeefully")
