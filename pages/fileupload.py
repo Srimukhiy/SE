@@ -12,12 +12,14 @@ def fileupload():
     uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
     if uploaded_file is not None:
+        text_to_speech("File uploaded successfully");
         st.success("File uploaded successfully!");
-        st.session_state.file_uploaded = True
+        
+        st.session_state["file_uploaded"] = True
         file_details = {"Filename": uploaded_file.name, "Filesize": uploaded_file.size, "Filetype": uploaded_file.type}
         st.success(file_details);
         # Read the uploaded CSV file
-        df = pd.read_csv(uploaded_file)
+        df = pd.read_csv(uploaded_file);
         #create or push into session variable 
         
         st.session_state['dataframe']= df;
@@ -46,7 +48,7 @@ def app():
         fileupload();
     else:
         switch_page("NavBar");
-        
+
 app();
 
 

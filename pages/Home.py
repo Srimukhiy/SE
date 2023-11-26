@@ -25,8 +25,9 @@ def Home():
     message.write("Listening...");
     text = input();
     wait();
-    user_message = st.chat_message("user");
-    user_message.write(text);
+    if text:
+        user_message = st.chat_message("user");
+        user_message.write(text);
     #creation of get started button to show all those
     if (st.button("Get started ", use_container_width=True) or (text and "start" in text)):  
         st.session_state['but_get_started'] = True;
