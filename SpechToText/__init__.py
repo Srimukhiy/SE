@@ -5,7 +5,7 @@ def input():
 # Initialize the recognizer
     r = sr.Recognizer()
     # Capture audio input using a microphone
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=0) as source:
         print("Listening... Speak now!")
         audio = r.listen(source)
 
