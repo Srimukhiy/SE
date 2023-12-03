@@ -3,7 +3,7 @@ import pyaudio;
 import streamlit as st;
 def input():
 # Initialize the recognizer
-    option =1;
+    option =0;
     if option ==1:
         r = sr.Recognizer()
         # Capture audio input using a microphone
