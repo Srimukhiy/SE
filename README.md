@@ -15,5 +15,4 @@ to the next step . to upload the file u need for visualization.
 
 Once the FileUploded.We will be redirected to charts page. where we can select the type of chart using the voice caommnds or by selecting the raadio button. 
 
-
-
+Hello, good job
